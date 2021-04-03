@@ -58,9 +58,9 @@ function setup() {
 
 
 
-
+	 var render = Matter.Render.create({ element: document.body, engine: engine, options: { width: 1600, height: 700, wireframes: false } });
 	Engine.run(engine);
-  
+	Matter.Render.run(render);
 }
 
 
@@ -69,6 +69,8 @@ function draw() {
   background(0);
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
+  helicopterSprite.x =packageSprite.x 
+  
   dg1sprite.x= dg1.position.x;
   dg1sprite.y= dg1.position.y;
   dg2sprite.x= dg2.position.x;
@@ -76,14 +78,10 @@ function draw() {
   dg3sprite.x= dg3.position.x;
   dg3sprite.y= dg3.position.y;
   if(keyCode === LEFT_ARROW){
-	dg1.position.x = dg1.position.x+4
-	dg2.position.x = dg2.position.x+4
-	dg3.position.x = dg3.position.x+4
-
+	packageBody.position.x = packageBody.position.x-1
 }if(keyCode === RIGHT_ARROW){
-	dg1.position.x = dg1.position.x-4
-	dg2.position.x = dg2.position.x-4
-	dg3.position.x = dg3.position.x-4
+	packageBody.position.x = packageBody.position.x+1
+
 
 }		
   
@@ -93,7 +91,7 @@ function draw() {
 
 function keyPressed() {
  if (keyCode === DOWN_ARROW) {
-    // Look at the hints in the document and understand how to make the package body fall only on press of the Down arrow key.
+    
 	Matter.Body.setStatic(packageBody,false)
     
   }
